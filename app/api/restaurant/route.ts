@@ -4,9 +4,12 @@ import { getAllResteraunts } from "@/lib/graphqlQuery"
 
 export const GET = requireAuth(
 	async (_: NextRequest, ctx) => {
-		const country = ctx.user.country
+		var country = ctx.user.country
 		if (!country) {
 			return NextResponse.json({ "error": "fetch failed" })
+		}
+		if (country === "GLOBAL") {
+			country = ""
 		}
 
 		const data = await fetch("http://localhost:3000/api/graphql", {

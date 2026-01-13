@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "next/navigation"
 import { getMenu } from "@/lib/graphqlQuery"
+import { useCart } from "@/app/context/cartContext"
 
 type MenuItem = {
 	name: string
@@ -10,6 +11,7 @@ type MenuItem = {
 }
 
 export default function RestaurantMenuPage() {
+	const { addItem } = useCart()
 	const { id } = useParams()
 	const [menu, setMenu] = useState<MenuItem[]>([])
 	const [loading, setLoading] = useState(true)
@@ -55,9 +57,7 @@ export default function RestaurantMenuPage() {
 
 						<button
 							className="px-4 py-1.5 text-sm rounded-md border hover:bg-black hover:text-white transition"
-							onClick={() => {
-								console.log("add to cart:", item)
-							}}
+							onClick={() => addItem(item)}
 						>
 							Add
 						</button>

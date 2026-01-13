@@ -3,12 +3,14 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
+import { useCart } from "@/app/context/cartContext";
 
 type User = {
 	name: string;
 };
 
 export function Header() {
+	const { items } = useCart()
 	const router = useRouter();
 	const pathname = usePathname()
 	const [user, setUser] = useState<User | null>(null);
@@ -47,6 +49,11 @@ export function Header() {
 			{user && (
 				<div className="relative">
 					{/* Username */}
+
+					<button onClick={() => router.push("/cart")}>
+						Cart ({items.length})
+					</button>
+
 					<button
 						onClick={() => setOpen((v) => !v)}
 						className="text-sm opacity-70 hover:opacity-100"

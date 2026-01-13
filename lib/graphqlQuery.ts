@@ -48,3 +48,16 @@ query Query($restaurantId: ID!) {
   }
 }
 `
+
+export const getCard = `
+query Query($all: Boolean) {
+  cards(all: $all) {
+    id
+    brand
+    last4
+    expiryMonth
+    expiryYear
+    isDefault
+  }
+}
+`

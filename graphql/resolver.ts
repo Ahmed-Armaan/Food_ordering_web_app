@@ -22,8 +22,8 @@ export const resolvers = {
       return getRestaurants({ id: args.id })
     },
 
-    cards: () => {
-      return getCards()
-    }
+    cards: (_: any, args: { all: boolean }) => {
+      return getCards(args.all)
+    },
   }
 }

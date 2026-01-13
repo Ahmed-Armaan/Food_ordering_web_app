@@ -33,6 +33,6 @@ export const typeDefs = `
     user(id: ID!): User
     restaurants(country: String): [Restaurant!]!
     restaurant(id: ID!): Restaurant
-    cards: [Card!]!
+    cards(all: Boolean): [Card!]!
   }
 `;
