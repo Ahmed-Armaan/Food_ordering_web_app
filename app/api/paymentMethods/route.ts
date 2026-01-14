@@ -4,7 +4,7 @@ import { NextRequest } from "next/server"
 
 export const GET = requireAuth(async (_: NextRequest, ctx) => {
 	if (ctx.user.role === "MANAGER") {
-		const res = await fetch("http://localhost:3000/api/graphql", {
+		const res = await fetch(process.env.BACKEND_URL + "/api/graphql", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
@@ -21,7 +21,7 @@ export const GET = requireAuth(async (_: NextRequest, ctx) => {
 	}
 
 	if (ctx.user.role === "ADMIN") {
-		const res = await fetch("http://localhost:3000/api/graphql", {
+		const res = await fetch(process.env.BACKEND_URL + "/api/graphql", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({

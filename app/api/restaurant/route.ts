@@ -12,7 +12,7 @@ export const GET = requireAuth(
 			country = ""
 		}
 
-		const data = await fetch("http://localhost:3000/api/graphql", {
+		const res = await fetch(process.env.BACKEND_URL + "/api/graphql", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
@@ -21,7 +21,7 @@ export const GET = requireAuth(
 			})
 		})
 
-		const json = await data.json()
+		const json = await res.json()
 		return NextResponse.json(json.data.restaurants)
 	}
 )
